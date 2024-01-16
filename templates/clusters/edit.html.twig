@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Clusters{% endblock %}
+
+{% block body %}
+    <h1>Edit Clusters</h1>
+
+    {{ include('clusters/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_clusters_index') }}">back to list</a>
+
+    {{ include('clusters/_delete_form.html.twig') }}
+{% endblock %}

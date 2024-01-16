@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Clusters index{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+
+        <h1>Clusters index</h1>
+    
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    
+        {% for message in app.flashes('error') %}
+            <div class="alert alert-danger" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nom</th>
+                    <th>Département</th>
+                    <th>Commune</th>
+                    <th>Arrondissement</th>
+                    <th>Village</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for cluster in clusters %}
+                <tr>
+                    <td>{{ cluster.id }}</td>
+                    <td>{{ cluster.nom }}</td>
+                    <td>{{ cluster.village.arrondissement.commune.departement.nom }}</td>
+                    <td>{{ cluster.village.arrondissement.commune.nom }}</td>
+                    <td>{{ cluster.village.arrondissement.nom }}</td>
+                    <td>{{ cluster.village.nom }}</td>
+                    <td class="d-flex justify-content-around">
+                            <button type="button" class="btn btn-danger supprimer" data-bs-toggle="modal" data-bs-target="#exampleModal" data-id="{{ cluster.id }}">Supprimer</button>
+                            {# {{ include('clusters/_delete_form.html.twig') }} #}
+                        {# <a class="btn btn-secondary" href="{{ path('app_clusters_edit', {'id': cluster.id}) }}">edit</a> #}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <a class="btn btn-dark" href="{{ path('app_clusters_new') }}">Create new</a>
+    </div>
+
+
+    {{ include('clusters/_modal_delete.html.twig') }}
+    <script src="{{ asset('js/supprimermodal.js') }}"></script>
+
+{% endblock %}

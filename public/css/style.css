@@ -1,0 +1,24 @@
+*{
+    font-size: 12px;
+    font-family: Arial;
+    /* color: red; */
+}
+
+body{
+    margin: 10%;
+    background-color: #ECF0F5;
+}
+
+.save{
+    background-color: #00C0EF;
+    color: white;
+}
+
+.annuler{
+    background-color: #F39C12;
+    color: white;
+}
+
+/* form{
+    color: red;
+} */
